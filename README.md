@@ -438,7 +438,7 @@ params = {
     'brand': 'ACME, Inc',
     'workflow': [{'channel': 'sms', 'to': '447700900000'}]
 }
-verify_request = verify2.new_request(params)
+verify_request = client.verify2.new_request(params)
 ```
 
 ### Use silent authentication, with email as a fallback
@@ -451,7 +451,7 @@ params = {
         {'channel': 'email', 'to': 'customer@example.com', 'from': 'business@example.com'}
     ]
 }
-verify_request = verify2.new_request(params)
+verify_request = client.verify2.new_request(params)
 check_url = verify_request['check_url'] # URL to continue with the silent auth workflow
 ```
 
@@ -466,7 +466,7 @@ params = {
     'brand': 'ACME, Inc',
     'workflow': [{'channel': 'sms', 'to': '447700900000', 'app_hash': 'asdfghjklqw'}],
 }
-verify_request = verify2.new_request(params)
+verify_request = client.verify2.new_request(params)
 ```
 
 ### Send a verification request to a blocked network
@@ -479,19 +479,19 @@ params = {
     'fraud_check': False,
     'workflow': [{'channel': 'sms', 'to': '447700900000'}]
 }
-verify_request = verify2.new_request(params)
+verify_request = client.verify2.new_request(params)
 ```
 
 ### Check a verification code
 
 ```python
-verify2.check_code(REQUEST_ID, CODE)
+client.verify2.check_code(REQUEST_ID, CODE)
 ```
 
 ### Cancel an ongoing verification
 
 ```python
-verify2.cancel_verification(REQUEST_ID)
+client.verify2.cancel_verification(REQUEST_ID)
 ```
 
 ## Verify V1 API
@@ -961,7 +961,7 @@ client.subaccounts.transfer_balance(
 ### Transfer bought phone numbers between accounts
 
 ```python
-client.subaccounts.transfer_balance(
+client.subaccounts.transfer_number(
     from_=FROM_ACCOUNT,
     to=TO_ACCOUNT,
     number=NUMBER_TO_TRANSFER,
